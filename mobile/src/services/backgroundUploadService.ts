@@ -38,12 +38,12 @@ class BackgroundUploadService {
           requiresBatteryNotLow: false,
           requiresStorageNotLow: false,
         },
-        async (taskId) => {
+        async (taskId: string) => {
           console.log('[BackgroundFetch] Task started:', taskId);
           await this.processPendingUploads();
           BackgroundFetch.finish(taskId);
         },
-        async (taskId) => {
+        async (taskId: string) => {
           console.log('[BackgroundFetch] Task timeout:', taskId);
           BackgroundFetch.finish(taskId);
         }

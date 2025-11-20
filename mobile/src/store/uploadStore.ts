@@ -181,14 +181,14 @@ export const useUploadStore = create<UploadStore>((set, get) => ({
       if (historyJson) {
         const historyArray = JSON.parse(historyJson);
         // Restore Date objects from ISO strings
-        const uploadsMap = new Map(
+        const uploadsMap = new Map<string, UploadFile>(
           historyArray.map((file: any) => [
             file.fileId,
             {
               ...file,
               createdAt: file.createdAt ? new Date(file.createdAt) : new Date(),
               completedAt: file.completedAt ? new Date(file.completedAt) : undefined,
-            },
+            } as UploadFile,
           ])
         );
         set({ uploads: uploadsMap });

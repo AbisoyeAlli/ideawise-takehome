@@ -28,12 +28,13 @@ export async function readFileChunk(
 
 export function base64ToBlob(base64: string, mimeType: string): Blob {
   const byteString = atob(base64);
-  const ab = new ArrayBuffer(byteString.length);
-  const ia = new Uint8Array(ab);
+  const byteNumbers = new Array(byteString.length);
 
   for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
+    byteNumbers[i] = byteString.charCodeAt(i);
   }
 
-  return new Blob([ab], { type: mimeType });
+  const byteArray = new Uint8Array(byteNumbers);
+  // @ts-ignore - React Native polyfill accepts Uint8Array
+  return new Blob([byteArray], { type: mimeType });
 }

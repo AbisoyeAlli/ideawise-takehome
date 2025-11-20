@@ -195,6 +195,13 @@ npm start -- --reset-cache
 
 ## Features & Improvements
 
+### Background Upload Support
+- Uploads continue even when app is backgrounded or minimized
+- Automatic upload resume after app restart
+- Pending upload queue with 24-hour retention
+- Background fetch integration for iOS and Android
+- Persistent upload state across app sessions
+
 ### Network State Monitoring
 - Automatic network detection and reconnection handling
 - Uploads automatically pause when network is lost
@@ -211,9 +218,11 @@ npm start -- --reset-cache
 ### Known Limitations
 - **File Size**: 5MB maximum (optimized for mobile networks)
 - **Upload History**: Limited to 50 most recent uploads
+- **Background Upload**: Pending uploads older than 24 hours are automatically cleaned up
 
 ## Tech Stack
 
+- **Background Uploads**: react-native-background-fetch, react-native-background-timer
 - **Network Monitoring**: @react-native-community/netinfo
 - **Framework**: React Native 0.73.0
 - **Language**: TypeScript with strict mode

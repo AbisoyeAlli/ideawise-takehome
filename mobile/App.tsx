@@ -3,14 +3,14 @@ import { StatusBar } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
 import { UploadScreen } from './src/screens/UploadScreen';
+import { backgroundUploadService } from './src/services/backgroundUploadService';
 import { networkMonitor } from './src/services/networkMonitor';
 
 const App: React.FC = () => {
   useEffect(() => {
-    // Initialize network monitoring
     networkMonitor.initialize();
+    backgroundUploadService.initialize();
 
-    // Cleanup on unmount
     return () => {
       networkMonitor.cleanup();
     };

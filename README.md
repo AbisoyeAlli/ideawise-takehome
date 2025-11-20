@@ -6,14 +6,16 @@ A full-stack cross-platform media file upload solution with chunked upload, prog
 
 This system enables reliable uploading of large media files (images and videos) with the following key features:
 
-- **Chunked Upload**: Files split into 1MB chunks for reliable transfer
-- **Concurrent Uploads**: Up to 3 parallel file uploads
+- **Chunked Upload**: Files split into chunks for reliable transfer
+- **Concurrent Uploads**: Multiple parallel file uploads
 - **Pause/Resume**: Pause and resume uploads at any time
 - **Progress Tracking**: Real-time progress for each file and chunk
 - **Auto-Retry**: Exponential backoff with up to 3 retry attempts
 - **File Validation**: Client and server-side validation with magic number detection
 - **Deduplication**: MD5-based duplicate file detection
-- **Upload History**: Persistent upload history in browser storage
+- **Upload History**: Persistent upload history
+- **Background Uploads**: Mobile uploads continue when app is backgrounded (mobile only)
+- **Network Resilience**: Automatic reconnection and retry on network restore (mobile only)
 
 ##  Architecture
 
@@ -21,7 +23,7 @@ This system enables reliable uploading of large media files (images and videos) 
 ideaWise/
 ├── backend/          # Symfony 7.1 REST API
 ├── frontend/         # React 18 + TypeScript web app
-├── mobile/           # (React Native)
+├── mobile/           # React Native 0.73 mobile app (iOS/Android)
 ├── Implementing.md   # Detailed implementation log
 ├── ideawise.png      # UI sketch for implementation
 └── README.md         # This file
