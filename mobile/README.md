@@ -195,13 +195,13 @@ npm start -- --reset-cache
 
 ## Features & Improvements
 
-### ✅ Network State Monitoring
+### Network State Monitoring
 - Automatic network detection and reconnection handling
 - Uploads automatically pause when network is lost
 - Waits for connectivity before retrying failed chunks
 - Prevents upload start when offline
 
-### ✅ Optimized for Mobile Devices
+### Optimized for Mobile Devices
 - **5MB maximum file size** for better mobile performance
 - **512KB chunk size** for mobile bandwidth efficiency
 - **2 concurrent uploads** to conserve mobile data
@@ -209,9 +209,8 @@ npm start -- --reset-cache
 - Automatic cleanup of old upload history
 
 ### Known Limitations
-1. **Background Uploads**: Not currently implemented (requires native module)
-2. **File Size**: 5MB maximum (optimized for mobile networks)
-3. **Upload History**: Limited to 50 most recent uploads
+- **File Size**: 5MB maximum (optimized for mobile networks)
+- **Upload History**: Limited to 50 most recent uploads
 
 ## Tech Stack
 

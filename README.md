@@ -23,6 +23,7 @@ ideaWise/
 ├── frontend/         # React 18 + TypeScript web app
 ├── mobile/           # (React Native)
 ├── Implementing.md   # Detailed implementation log
+├── ideawise.png      # UI sketch for implementation
 └── README.md         # This file
 ```
 
