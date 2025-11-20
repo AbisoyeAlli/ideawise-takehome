@@ -93,6 +93,7 @@ Frontend will be available at `http://localhost:5173`
 
 - [Backend README](./backend/README.md) - Detailed backend documentation
 - [Frontend README](./frontend/README.md) - Frontend setup and features
+- [Mobile README](./mobile/README.md) - Mobile setup and features
 - [Implementing.md](./Implementing.md) - Step-by-step implementation log
 
 
