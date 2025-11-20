@@ -1,0 +1,64 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    app.upload.chunk_size: '%env(int:UPLOAD_CHUNK_SIZE)%'
+    app.upload.max_file_size: '%env(int:UPLOAD_MAX_FILE_SIZE)%'
+    app.upload.max_files: '%env(int:UPLOAD_MAX_FILES)%'
+    app.upload.chunk_retention: '%env(int:UPLOAD_CHUNK_RETENTION)%'
+    app.upload.file_retention: '%env(int:UPLOAD_FILE_RETENTION)%'
+    app.upload.chunks_dir: '%kernel.project_dir%/var/uploads/chunks'
+    app.upload.files_dir: '%kernel.project_dir%/var/uploads/files'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    # Redis Client
+    Predis\Client:
+        arguments:
+            - '%env(REDIS_URL)%'
+
+    # File Validation Service
+    App\Service\FileValidationService:
+        arguments:
+            $maxFileSize: '%app.upload.max_file_size%'
+            $maxFiles: '%app.upload.max_files%'
+
+    # Chunk Manager Service
+    App\Service\ChunkManagerService:
+        arguments:
+            $chunksDirectory: '%app.upload.chunks_dir%'
+            $chunkRetention: '%app.upload.chunk_retention%'
+
+    # Storage Service
+    App\Service\StorageService:
+        arguments:
+            $uploadDirectory: '%app.upload.files_dir%'
+
+    # Upload Controller
+    App\Controller\UploadController:
+        arguments:
+            $chunkSize: '%app.upload.chunk_size%'
+
+    # Cleanup Command
+    App\Command\CleanupUploadsCommand:
+        arguments:
+            $fileRetention: '%app.upload.file_retention%'
+            $chunkRetention: '%app.upload.chunk_retention%'
